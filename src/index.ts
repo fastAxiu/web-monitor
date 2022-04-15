@@ -1,1 +1,3 @@
-console.log('index')
+import { PERF } from "./perf";
+
+PERF.run();
