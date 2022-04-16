@@ -1,8 +1,9 @@
-import { VITAL } from "./vital"
-
+import { VITAL } from "./vital";
+function getTimes() {
+}
 function run() {
-    VITAL.getVitals();
+  VITAL.getVitals();
 }
 export const PERF = {
-    run
-}
+  run,
+};
