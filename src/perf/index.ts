@@ -10,9 +10,8 @@ function getTimes() {
   }
 }
 function run() {
-  // Illegal invocation
   // VITAL.getVitals();
-  LOG.report('https://localhost:8080/bl', getTimes());
+  LOG.report('https://localhost:8080/ax', JSON.stringify(getTimes()));
 }
 export const PERF = {
   run,

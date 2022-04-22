@@ -12,5 +12,6 @@ function xhrSend(url, data, cb?) {
 }
 
 export const LOG = {
-    report: navigator.sendBeacon || xhrSend
+    // Illegal invocation, no bind no work
+    report: navigator.sendBeacon.bind(window.navigator) || xhrSend
 }
