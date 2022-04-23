@@ -1,3 +1,4 @@
+import { CONFIG } from "../config";
 import { LOG } from "../util/log";
 import { VITAL } from "./vital";
 // navigation timin https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
@@ -11,7 +12,7 @@ function getTimes() {
 }
 function run() {
   // VITAL.getVitals();
-  LOG.report('https://localhost:8080/ax', JSON.stringify(getTimes()));
+  LOG.report(CONFIG.reportUrl, JSON.stringify(getTimes()));
 }
 export const PERF = {
   run,
