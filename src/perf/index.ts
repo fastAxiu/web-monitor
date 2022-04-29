@@ -1,6 +1,7 @@
 import { CONFIG } from "../config";
 import { LOG } from "../util/log";
 import { VITAL } from "./vital";
+import { UTIL } from '../util/util';
 // navigation timin https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry
 function getTimes() {
   const { duration, redirectStart, redirectEnd, requestStart, responseStart } = performance.getEntriesByType('navigation')[0] as any;
@@ -13,7 +14,9 @@ function getTimes() {
 }
 function run() {
   // VITAL.getVitals();
-  LOG.report(CONFIG.reportUrl, JSON.stringify(getTimes()));
+  UTIL.runAfterLoad(() => {
+    LOG.report(CONFIG.reportUrl, JSON.stringify(getTimes()));
+  })
 }
 export const PERF = {
   run,

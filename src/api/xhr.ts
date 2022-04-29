@@ -1,3 +1,6 @@
+import { CONFIG } from "../config";
+import { LOG } from "../util/log";
+
 const originalProto = XMLHttpRequest.prototype;
 const originalOpen = originalProto.open;
 const originalSend = originalProto.send;
@@ -9,16 +12,21 @@ function proxyXHR() {
     originalOpen.apply(this, args);
   };
 
-  originalProto.send = (...args)=> {
+  originalProto.send = (...args) => {
     this.startTime = Date.now();
 
     const onLoadend = () => {
       this.endTime = Date.now();
-      this.duration = this.endTime - this.startTime;
-
-    //   const { status, duration, startTime, endTime, url, method } = this;
-    //   report
-
+      
+      const { status, duration, startTime, url, method } = this;
+      LOG.report(CONFIG.reportUrl, {
+        duration,
+        status,
+        startTime,
+        url,
+        method,
+        type: "xhr",
+      });
       this.removeEventListener("loadend", onLoadend, true);
     };
 

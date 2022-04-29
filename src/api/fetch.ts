@@ -19,7 +19,6 @@ function proxyFetch() {
                     ...baseData,
                     duration: Date.now() - baseData.startTime,
                     status,
-                    success
                 })
                 return res;
             })
@@ -28,7 +27,6 @@ function proxyFetch() {
                     ...baseData,
                     duration: Date.now() - baseData.startTime,
                     status: -1,
-                    success: false
                 })
                 throw err;
             })
